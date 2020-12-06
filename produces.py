@@ -1,4 +1,6 @@
 from kafka import KafkaProducer
 producer = KafkaProducer(bootstrap_servers='localhost:9092')
-producer.send('quickstart-events', b'python')
-producer.flush()
+
+with open('/home/ec2-user/test.json') as file:
+    producer.send('quickstart-events', file.read())
+    producer.flush()
