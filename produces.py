@@ -7,7 +7,7 @@ import os
 
 
 
-producer = KafkaProducer(bootstrap_servers='localhost:9092', value_serializer=lambda  K:dumps(K).encode('utf-8'))
+producer = KafkaProducer(bootstrap_servers='localhost:9092')
 file_name = '/home/ec2-user/test.json'
 
 print(f'File Size is {os.stat(file_name).st_size / (1024 * 1024)} MB')
@@ -18,7 +18,7 @@ for line in txt_file:
     print(line)
     # we can process file line by line here, for simplicity I am taking count of lines
     count += 1
-    producer.send('test-events',line)
+    producer.send('test',line)
     producer.flush()
 
 txt_file.close()
