@@ -18,7 +18,7 @@ for line in txt_file:
     print(line)
     # we can process file line by line here, for simplicity I am taking count of lines
     count += 1
-    producer.send('test',line)
+    producer.send('test',line.encode('UTF-8'))
     producer.flush()
 
 txt_file.close()
