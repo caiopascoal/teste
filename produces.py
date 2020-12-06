@@ -7,7 +7,7 @@ producer = KafkaProducer(bootstrap_servers='localhost:9092', value_serializer=la
    K:dumps(K).encode('utf-8'))
 total = 0
 
-for chunk in pd.read_json('/home/ec2-user/test.json', chunksize=1000):
+for chunk in pd.read_json('/home/ec2-user/test.json', chunksize=1000, lines=True):
     print(chunk)
     total += sum(chunk['x'])
     for msg in chunk:
